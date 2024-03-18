@@ -98,7 +98,7 @@ Int Fa 0/7
 !!cisco unified call manager Express command
 !@@@CUCM-M
 config t
-   hostname CUCM-_
+   hostname CUCM-12
    enable secret pass
    service password-encryption
    no logging console
@@ -113,22 +113,22 @@ config t
       exec-timeout 0 0
    Int Fa 0/0
      no shutdown
-	 ip add 10._.100.8 255.255.255.0 
+	 ip add 10.12.100.8 255.255.255.0 
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern _00
+   destination-pattern 1200
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern _01
+   destination-pattern 1201
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern _02
+   destination-pattern 1202
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern _03
+   destination-pattern 1203
    port 0/0/3
 end
 
@@ -140,31 +140,31 @@ telephony-service
    no auto-reg-ephone
    max-ephones 5
    max-dn 20
-   ip source-address 10._.100.8 port 2000
+   ip source-address 10.12.100.8 port 2000
    create cnf-files
 ephone-dn 1
-  number _11
+  number 1211
 ephone-dn 2
-  number _22
+  number 1222
 ephone-dn 3
-  number _33
+  number 1233
 ephone-dn 4
-  number _44
+  number 1244
 ephone-dn 5
-  number _55
+  number 1255
 ephone-dn 6
-  number _66
+  number 1266
 ephone-dn 7
-  number _77
+  number 1277
 ephone-dn 8
-  number _88	
+  number 1288	
 Ephone 1
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.2325
   type 8945
   button 1:1 2:3 3:2 4:4
   restart
 Ephone 2
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.161b
   type 8945
   button 1:5 2:6 3:7 4:8
   restart  
@@ -192,14 +192,14 @@ ipv4 0.0.0.0 0.0.0.0
 exit
 
 configure terminal
-! dial-peer voice 11 Voip
-! destination-pattern 11..
-! session target ipv4:10.11.100.8
+ dial-peer voice 11 Voip
+!destination-pattern 11..
+ session target ipv4:10.11.100.8
+codec g711ULAW
+! dial-peer voice 12 Voip
+! destination-pattern 12..
+! session target ipv4:10.12.100.8
 ! codec g711ULAW
-dial-peer voice 12 Voip
- destination-pattern 12..
- session target ipv4:10.12.100.8
- codec g711ULAW
 dial-peer voice 21 Voip
  destination-pattern 21..
  session target ipv4:10.21.100.8
